@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>⚡ Energy Consumption Analyzer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>⚡ Energy Consumption Analyzer</h1>
+    <hr>
+    {% block content %}{% endblock %}
+  </div>
+  <hr>
+<a href="/">🏠 Home</a> | 
+<a href="/dashboard">📊 Dashboard</a>
+<hr>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h2>📊 Energy Usage Dashboard</h2>
+
+  <canvas id="usageChart" width="400" height="200"></canvas>
+
+  <h3>🔍 Recent Usage</h3>
+  <table border="1" cellpadding="10" cellspacing="0" style="margin:auto;">
+    <tr>
+      <th>Appliance</th>
+      <th>Hours Used</th>
+      <th>Energy (kWh)</th>
+      <th>Cost (₹)</th>
+    </tr>
+    {% for record in usage_data %}
+    <tr>
+      <td>{{ record.appliance }}</td>
+      <td>{{ record.hours }}</td>
+      <td>{{ record.energy|round(2) }}</td>
+      <td>{{ record.cost|round(2) }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('usageChart').getContext('2d');
+    const usageChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: {{ labels|safe }},
+        datasets: [{
+          label: 'Energy Consumption (kWh)',
+          data: {{ values|safe }},
+          backgroundColor: 'rgba(54, 162, 235, 0.6)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'top' },
+          title: { display: true, text: 'Appliance-wise Energy Consumption' }
+        }
+      }
+    });
+  </script>
+{% endblock %}

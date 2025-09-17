@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h2>Result</h2>
+  <p>Appliance: <b>{{ appliance.name }}</b></p>
+  <p>Hours Used: <b>{{ hours }}</b></p>
+  <p>Energy Consumed: <b>{{ energy|round(2) }} kWh</b></p>
+  <p>Estimated Cost: <b>₹{{ cost|round(2) }}</b></p>
+
+  <h3>💡 Energy Saving Tip:</h3>
+  <p>{{ tip|random }}</p>
+
+  <a href="/">⬅ Go Back</a>
+{% endblock %}

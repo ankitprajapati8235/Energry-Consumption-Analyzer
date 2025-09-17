@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h2>Enter Appliance Usage</h2>
+  <form method="POST" action="/calculate">
+    <label>Select Appliance:</label>
+    <select name="appliance" required>
+      {% for appliance in appliances %}
+      <option value="{{ appliance.id }}">{{ appliance.name }} ({{ appliance.power }}W)</option>
+      {% endfor %}
+    </select><br><br>
+
+    <label>Hours Used:</label>
+    <input type="number" name="hours" step="0.1" required><br><br>
+
+    <button type="submit">Calculate</button>
+  </form>
+{% endblock %}
